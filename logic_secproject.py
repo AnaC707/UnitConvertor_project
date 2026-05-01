@@ -107,7 +107,7 @@ class Logic(QMainWindow, Ui_MainWindow):
         """
         The method converts the input value to the desired unit.
         Because the base units are Meters and Kilograms, the other units are converted
-        to the equivalent of 1 meter or kilogram. AI helped me on how to implement it.
+        to the equivalent of 1 meter or 1 kilogram. AI helped me on how to implement it.
         :param value: user's input value
         :param category: conversion category
         :param from_unit: unit to convert from
