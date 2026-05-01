@@ -75,9 +75,9 @@ class Logic(QMainWindow, Ui_MainWindow):
     def handle_convert(self)->None:
         """
         The method handles the process when the Enter button is clicked. It also
-        validates input, checks if units are selected, displays results, and saves data.
-        AI gave me the suggestion to highlight the current input value after a
-        conversion is done, so I implemented it.
+        validates input, checks if a category and units are selected, displays results, 
+        and saves data. AI gave me the suggestion to highlight the current input value
+        after a conversion is done, so I implemented it.
         """
         try:
             value = float(self.initial_value.text().strip())
