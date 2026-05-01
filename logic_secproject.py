@@ -76,8 +76,8 @@ class Logic(QMainWindow, Ui_MainWindow):
         """
         The method handles the process when the Enter button is clicked. It also
         validates input, checks if units are selected, displays results, and saves data.
-        AI gave me the suggestion to select the input value when a conversion is
-        done, so I implemented it.
+        AI gave me the suggestion to highlight the current input value after a
+        conversion is done, so I implemented it.
         """
         try:
             value = float(self.initial_value.text().strip())
@@ -107,7 +107,7 @@ class Logic(QMainWindow, Ui_MainWindow):
         """
         The method converts the input value to the desired unit.
         Because the base units are Meters and Kilograms, the other units are converted
-        to the equivalent of 1 meter or kilogram. AI helped me with these conversions.
+        to the equivalent of 1 meter or kilogram. AI helped me on how to implement it.
         :param value: user's input value
         :param category: conversion category
         :param from_unit: unit to convert from
