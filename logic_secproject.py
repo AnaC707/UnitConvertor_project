@@ -9,16 +9,17 @@ class Logic(QMainWindow, Ui_MainWindow):
     """
     def __init__(self)->None:
         """
-        The method initializes the main window, sets the units available,
-        and calls the connections function.
+        The method initializes the main window, sets the units available, and
+        calls the connections function. Also, AI helped me configure the combo
+        boxes to show no selected item by default until the user chooses a unit.
         """
         super().__init__()
         self.setupUi(self)
 
-        self.from_box.clear()
-        self.to_box.clear()
         self.from_box.setPlaceholderText("Select unit")
         self.to_box.setPlaceholderText("Select unit")
+        self.from_box.setCurrentIndex(-1)
+        self.to_box.setCurrentIndex(-1)
 
         self.units = {
             "Length": ["Meters", "Kilometers", "Miles", "Feet"],
@@ -41,8 +42,6 @@ class Logic(QMainWindow, Ui_MainWindow):
         This method checks if a category is selected, updates the unit combo
         boxes depending on the selected category, clears previous results,
         and resets the combo box selections.
-        Also, AI helped me configure the combo boxes to show no selected item
-        by default until the user chooses a unit.
         """
         category = self.get_category()
         if not category:
