@@ -4,7 +4,14 @@ import csv
 import os
 
 class Logic(QMainWindow, Ui_MainWindow):
-    def __init__(self):
+    """
+    A class that sets the application logic for the unit converter.
+    """
+    def __init__(self)->None:
+        """
+        The method initializes the main window, the units
+        available and calls the connections function.
+        """
         super().__init__()
         self.setupUi(self)
 
@@ -20,14 +27,20 @@ class Logic(QMainWindow, Ui_MainWindow):
         }
         self.connections()
 
-    def connections(self):
+    def connections(self)->None:
+        """
+        This method connects the UI buttons to other functions.
+        """
         self.length_button.toggled.connect(self.update_units)
         self.weight_button.toggled.connect(self.update_units)
         self.temp_button.toggled.connect(self.update_units)
-
         self.enter_button.clicked.connect(self.handle_convert)
 
-    def update_units(self):
+    def update_units(self)->None:
+        """
+        This method updates the unit combo boxes
+        depending on the selected category.
+        """
         category = self.get_category()
         if not category:
             return
@@ -43,7 +56,11 @@ class Logic(QMainWindow, Ui_MainWindow):
         self.to_box.setCurrentIndex(-1)
         self.results_label.setText("Results")
 
-    def get_category(self):
+    def get_category(self)->str|None:
+        """
+        The method returns the selected category.
+        :return: name of the selected category or None.
+        """
         if self.length_button.isChecked():
             return "Length"
         elif self.weight_button.isChecked():
@@ -53,7 +70,11 @@ class Logic(QMainWindow, Ui_MainWindow):
         else:
             return None
 
-    def handle_convert(self):
+    def handle_convert(self)->None:
+        """
+        The method handles the process when the Enter button is clicked. It also
+        validates input, performs the conversion, displays results, and saves data.
+        """
         try:
             value = float(self.initial_value.text().strip())
             category = self.get_category()
@@ -78,7 +99,15 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.initial_value.setFocus()
             self.initial_value.selectAll()
 
-    def convert(self, value, category, from_unit, to_unit):
+    def convert(self, value: float, category: str, from_unit: str, to_unit: str)->float:
+        """
+        The method converts the input value to the desired unit.
+        :param value: user's input value
+        :param category: conversion category
+        :param from_unit: unit to convert from
+        :param to_unit: unit to convert to
+        :return: the converted value
+        """
         if from_unit == to_unit:
             return value
 
@@ -107,7 +136,15 @@ class Logic(QMainWindow, Ui_MainWindow):
 
         return value
 
-    def save_data(self, category, value, from_unit, result, to_unit):
+    def save_data(self, category: str, value: float, from_unit: str, result: float, to_unit: str)->None:
+        """
+        This method saves the conversion process to the csv file.
+        :param category: conversion category
+        :param value: user's input value
+        :param from_unit: starting unit
+        :param result: converted value
+        :param to_unit: ending unit
+        """
         file_exists = os.path.isfile("conversions.csv")
 
         with open("conversions.csv", "a", newline="") as csvfile:
