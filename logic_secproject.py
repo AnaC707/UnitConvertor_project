@@ -8,10 +8,10 @@ class Logic(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
 
-        self.from_box.clear()
-        self.to_box.clear()
         self.from_box.setPlaceholderText("Select unit")
         self.to_box.setPlaceholderText("Select unit")
+        self.from_box.setCurrentIndex(-1)
+        self.to_box.setCurrentIndex(-1)
 
         self.units = {
             "Length": ["Meters", "Kilometers", "Miles", "Feet"],
