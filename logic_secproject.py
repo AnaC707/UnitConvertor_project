@@ -9,8 +9,8 @@ class Logic(QMainWindow, Ui_MainWindow):
     """
     def __init__(self)->None:
         """
-        The method initializes the main window, the units
-        available and calls the connections function.
+        The method initializes the main window, sets the units available,
+        and calls the connections function.
         """
         super().__init__()
         self.setupUi(self)
@@ -29,7 +29,7 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def connections(self)->None:
         """
-        This method connects the UI buttons to other functions.
+        This method connects the UI buttons to their respective functions.
         """
         self.length_button.toggled.connect(self.update_units)
         self.weight_button.toggled.connect(self.update_units)
@@ -38,8 +38,11 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def update_units(self)->None:
         """
-        This method updates the unit combo boxes
-        depending on the selected category.
+        This method checks if a category is selected, updates the unit combo
+        boxes depending on the selected category, clears previous results,
+        and resets the combo box selections.
+        Also, AI helped me configure the combo boxes to show no selected item
+        by default until the user chooses a unit.
         """
         category = self.get_category()
         if not category:
@@ -58,8 +61,8 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def get_category(self)->str|None:
         """
-        The method returns the selected category.
-        :return: name of the selected category or None.
+        The method returns the selected category or None if not selected.
+        :return: name of selected category or None.
         """
         if self.length_button.isChecked():
             return "Length"
@@ -73,7 +76,9 @@ class Logic(QMainWindow, Ui_MainWindow):
     def handle_convert(self)->None:
         """
         The method handles the process when the Enter button is clicked. It also
-        validates input, performs the conversion, displays results, and saves data.
+        validates input, checks if units are selected, displays results, and saves data.
+        AI gave me the suggestion to select the input value when a conversion is
+        done, so I implemented it.
         """
         try:
             value = float(self.initial_value.text().strip())
@@ -102,11 +107,13 @@ class Logic(QMainWindow, Ui_MainWindow):
     def convert(self, value: float, category: str, from_unit: str, to_unit: str)->float:
         """
         The method converts the input value to the desired unit.
+        Because the base units are Meters and Kilograms, the other units are converted
+        to the equivalent of 1 meter or kilogram. AI helped me with these conversions.
         :param value: user's input value
         :param category: conversion category
         :param from_unit: unit to convert from
         :param to_unit: unit to convert to
-        :return: the converted value
+        :return: the converted value; result
         """
         if from_unit == to_unit:
             return value
@@ -138,7 +145,8 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def save_data(self, category: str, value: float, from_unit: str, result: float, to_unit: str)->None:
         """
-        This method saves the conversion process to the csv file.
+        This method saves the conversion process to the csv file and checks if
+        the file exists, or creates a new one if needed.
         :param category: conversion category
         :param value: user's input value
         :param from_unit: starting unit
