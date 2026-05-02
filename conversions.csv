@@ -1,3 +1,9 @@
 Category,Input,From,Result,To
 Weight,123.0830,Grams,0.1231,Kilograms
 Temperature,37.5000,Celsius,99.5000,Fahrenheit
+Weight,254.0000,Grams,0.5600,Pounds
+Weight,30.6500,Grams,0.0676,Pounds
+Temperature,30.6500,Celsius,87.1700,Fahrenheit
+Length,46.0700,Kilometers,151148.2940,Feet
+Weight,46.0700,Pounds,20896.9834,Grams
+Weight,46.0700,Grams,0.0461,Kilograms
